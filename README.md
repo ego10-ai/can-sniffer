@@ -1,5 +1,4 @@
-# CAN Adapter
-
+# CAN sniffer
 ![MCU](https://img.shields.io/badge/MCU-STM32G431-blue?style=flat-square)
 ![Hardware](https://img.shields.io/badge/Hardware-Open_Source-green?style=flat-square)
 ![Firmware](https://img.shields.io/badge/Firmware-candleLight_%7C_SLCAN-orange?style=flat-square)
