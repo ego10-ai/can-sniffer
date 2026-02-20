@@ -50,7 +50,7 @@ You can flash different firmware depending on your needs:
 
 1. candleLight: Makes the device show up as a native CAN interface. Good for Linux and modern Windows tools.
 2. SLCAN: Makes the device show up as a Serial COM Port. Good for older software.
-3. Custom: You can write your own C code using STM32CubeIDE to make the board do specific tasks automatically.
+3. Custom: i will write soon but You can also write your own C code using STM32CubeIDE to make the board do specific tasks automatically.
 
 ## License
 This project is open-source and licensed under the MIT License.
