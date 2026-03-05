@@ -11,8 +11,10 @@ This is a simple adapter board I designed to connect a computer to a CAN bus net
 It is built using the STM32G431 microcontroller and the TJA1462 CAN transceiver. It supports both standard CAN and CAN FD.
 
 ## Features
-* USB-C connection for power and data.
-* Supports CAN FD (Flexible Data-rate).
+* Direct plug-in to vehicle OBD2 ports.
+* Safe car power circuit (handles 12V from the vehicle battery).
+* USB-C connection for computer data and USB power.
+* 3-pin power selector jumper to protect your computer.
 * Switchable 120 ohm termination resistor.
 * 4 LEDs to show status (Power, RX, TX, Error).
 
@@ -22,27 +24,35 @@ It is built using the STM32G431 microcontroller and the TJA1462 CAN transceiver.
 The board uses these main parts:
 * MCU: STM32G431CBU6
 * Transceiver: TJA1462
-* Power: 3.3V Regulator (AP7343)
-* Termination: A 2-pin header with a jumper cap.
+* USB Power: 3.3V Regulator (AP7343)
+* Car Power: XL1509-3.3 Buck Converter (steps 12V down to safe 3.3V)
+* Protection: SS14 diodes to stop backward power flow.
+* Connections: USB-C port, OBD2 16-pin male plug, and a standard CAN pin header.
 
 ## Bill of Materials (BOM)
 A complete BOM file (`BOM for can sniffer.xlsx`) is included in this repository. It lists all the exact part numbers, values, and packages you need to order or assemble this board.
 
-## Wiring
+## How to use the Power Jumper (Very Important)
 
 
-Connect your wires to the header pins like this:
+Because this board can plug into a car and a computer at the same time, you must select where the power comes from using the 3-pin header.
+
+* Cap on Pins 1 and 2: The board runs on USB power. Use this when sitting at your desk.
+* Cap on Pins 2 and 3: The board runs on Car power. Use this when plugged into the car's OBD2 port.
+
+## How to use the Termination Jumper
+There is a 120 ohm resistor on the board to help the CAN signal. You can turn it on or off using the 2-pin header.
+
+* Jumper ON (Cap is on): The resistor is connected. Do this if the adapter is at the very end of the wire.
+* Jumper OFF (Cap is off): The resistor is disconnected. Do this if the adapter is in the middle of a network that already has resistors.
+
+## Wiring for Custom Cables
+
+
+If you use the pin header instead of the OBD2 plug, connect your wires like this:
 * CAN H: Connect to the High line.
 * CAN L: Connect to the Low line.
 * GND: Always connect the ground wire.
-
-Warning: Do not connect 12V or vehicle battery power to this board. It gets all the power it needs from the USB port.
-
-## How to use the Jumper
-There is a 120 ohm resistor on the board to help the signal. You can turn it on or off using the 2-pin header.
-
-* Jumper ON (Cap is on): The resistor is connected. Do this if the adapter is at the very end of the wire.
-* Jumper OFF (Cap is off): The resistor is disconnected. Do this if the adapter is in the middle of the network.
 
 ## Firmware Options
 You can flash different firmware depending on your needs:
